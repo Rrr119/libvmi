@@ -57,6 +57,9 @@ target_link_libraries(check_libvmi test_write)
 add_test(NAME test_libvmi
     COMMAND check_libvmi)
 
+# NetBSD image tests (3 images + an offline config/symbol smoke test)
+add_subdirectory(netbsd)
+
 # add "check" target, to keep autotools compatibility
 # Note: "check" is already used by CMake as a Utility target,
 # we cannot use it

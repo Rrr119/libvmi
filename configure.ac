@@ -112,6 +112,13 @@ AC_ARG_ENABLE([freebsd],
       [enable_freebsd=yes])
 AM_CONDITIONAL([FREEBSD], [test x"$enable_freebsd" = xyes])
 
+AC_ARG_ENABLE([netbsd],
+      [AS_HELP_STRING([--disable-netbsd],
+         [Disable support for introspecting NetBSD @<:@no@:>@])],
+      [enable_netbsd=$enableval],
+      [enable_netbsd=yes])
+AM_CONDITIONAL([NETBSD], [test x"$enable_netbsd" = xyes])
+
 
 AC_ARG_ENABLE([vmifs],
       [AS_HELP_STRING([--disable-vmifs],
@@ -365,6 +372,10 @@ AC_CHECK_LIB(json-c, json_object_get_uint64, [AC_DEFINE([JSONC_UINT64_SUPPORT], 
 [then]
     AC_DEFINE([ENABLE_FREEBSD], [1], [Define to 1 to FreeBSD support.])
 [fi]
+[if test "$enable_netbsd" = "yes"]
+[then]
+    AC_DEFINE([ENABLE_NETBSD], [1], [Define to 1 to NetBSD support.])
+[fi]
 [if test "$volatility_ist" = "yes" -a "$enable_osx" = "yes"]
 [then]
     AC_DEFINE([ENABLE_OSX], [1], [Define to 1 to enable OSX support.])
@@ -496,6 +507,7 @@ OS                      | Option
 Windows                 | --enable-windows=$enable_windows
 Linux                   | --enable-linux=$enable_linux
 FreeBSD                 | --enable-freebsd=$enable_freebsd
+NetBSD                  | --enable-netbsd=$enable_netbsd
 OSX                     | --enable-osx=$enable_osx
 ------------------------|---------------------------
 

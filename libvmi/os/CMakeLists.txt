@@ -6,6 +6,10 @@ if (ENABLE_FREEBSD)
     add_subdirectory(freebsd)
 endif ()
 
+if (ENABLE_NETBSD)
+    add_subdirectory(netbsd)
+endif ()
+
 if (ENABLE_LINUX)
     add_subdirectory(linux)
 endif ()

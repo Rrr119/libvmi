@@ -67,6 +67,13 @@ START_TEST (test_libvmi_piddtb)
             vmi_read_addr_ksym(vmi, "allproc", &list_head);
             vmi_read_addr_va(vmi, list_head + tasks_offset, 0, &next_process);
             break;
+        case VMI_OS_NETBSD:
+            vmi_get_offset(vmi, "netbsd_name", &name_offset);
+            vmi_get_offset(vmi, "netbsd_pid", &pid_offset);
+
+            vmi_read_addr_ksym(vmi, "allproc", &list_head);
+            vmi_read_addr_va(vmi, list_head + tasks_offset, 0, &next_process);
+            break;
         default:
             goto done;
     }
@@ -140,6 +147,9 @@ START_TEST (test_libvmi_kv2p)
         case VMI_OS_FREEBSD:
             vmi_translate_ksym2v(vmi, "allproc", &va);
             break;
+        case VMI_OS_NETBSD:
+            vmi_translate_ksym2v(vmi, "allproc", &va);
+            break;
         default:
             fail_unless(0, "vmi set to invalid os type");
             break;
@@ -176,6 +186,9 @@ START_TEST (test_libvmi_ksym2v)
             vmi_translate_ksym2v(vmi, "init_task", &va);
             break;
         case VMI_OS_FREEBSD:
+            vmi_translate_ksym2v(vmi, "allproc", &va);
+            break;
+        case VMI_OS_NETBSD:
             vmi_translate_ksym2v(vmi, "allproc", &va);
             break;
         default:

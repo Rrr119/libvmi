@@ -283,6 +283,10 @@ const char* rekall_get_os_type(vmi_instance_t vmi)
 
     if ( !strcmp("Linux", json_object_get_string(os)) )
         return "Linux";
+    else if ( !strcmp("FreeBSD", json_object_get_string(os)) )
+        return "FreeBSD";
+    else if ( !strcmp("NetBSD", json_object_get_string(os)) )
+        return "NetBSD";
     else
         return "Windows";
 

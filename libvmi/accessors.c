@@ -1113,6 +1113,29 @@ vmi_get_freebsd_sysmap(
 }
 
 const char *
+vmi_get_netbsd_sysmap(
+    vmi_instance_t vmi)
+{
+    netbsd_instance_t netbsd_instance = NULL;
+
+#ifdef ENABLE_SAFETY_CHECKS
+    if (!vmi)
+        return NULL;
+
+    if (VMI_OS_NETBSD != vmi->os_type)
+        return NULL;
+
+    if (!vmi->os_data)
+        return NULL;
+#endif
+
+    netbsd_instance = vmi->os_data;
+
+    return netbsd_instance->sysmap;
+
+}
+
+const char *
 vmi_get_rekall_path(
     vmi_instance_t vmi)
 {
@@ -1155,6 +1178,10 @@ vmi_get_os_profile_path(
         case VMI_OS_FREEBSD: {
             freebsd_instance_t freebsd_instance = vmi->os_data;
             return freebsd_instance->sysmap;
+        }
+        case VMI_OS_NETBSD: {
+            netbsd_instance_t netbsd_instance = vmi->os_data;
+            return netbsd_instance->sysmap;
         }
         default:
             break;

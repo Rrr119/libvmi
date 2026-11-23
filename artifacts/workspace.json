@@ -1,0 +1,17 @@
+{
+  "root": "/home/dev/feedback/uid34543",
+  "B": "/home/dev/feedback/uid34543",
+  "sha": "34b96e3b47d0f81539ff80b5e3aec707ae127410",
+  "wslDistro": "Ubuntu-26.04",
+  "source": {
+    "owner": "libvmi",
+    "repo": "libvmi",
+    "sha": "34b96e3b47d0f81539ff80b5e3aec707ae127410"
+  },
+  "fork": {
+    "owner": "Rrr119",
+    "repo": "libvmi",
+    "cloneUrl": "https://github.com/Rrr119/libvmi.git"
+  },
+  "at": "2026-11-23T03:06:22.286Z"
+}

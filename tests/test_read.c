@@ -40,6 +40,9 @@ char *get_sym (vmi_instance_t vmi)
         case VMI_OS_FREEBSD:
             sym = "allproc";
             break;
+        case VMI_OS_NETBSD:
+            sym = "allproc";
+            break;
         default:
             break;
     };

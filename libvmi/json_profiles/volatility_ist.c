@@ -261,6 +261,10 @@ const char *volatility_get_os_type(vmi_instance_t vmi)
         return "Windows";
     if (json_object_object_get_ex(metadata, "mac", &os))
         return "OSX";
+    if (json_object_object_get_ex(metadata, "netbsd", &os))
+        return "NetBSD";
+    if (json_object_object_get_ex(metadata, "freebsd", &os))
+        return "FreeBSD";
     return "Linux";
 }
 

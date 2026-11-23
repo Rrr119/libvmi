@@ -275,6 +275,11 @@ int vmi_parse_config (const char *target_name)
 %token<str>    FREEBSD_VMSPACE
 %token<str>    FREEBSD_PMAP
 %token<str>    FREEBSD_PGD
+%token<str>    NETBSD_NAME
+%token<str>    NETBSD_PID
+%token<str>    NETBSD_VMSPACE
+%token<str>    NETBSD_PMAP
+%token<str>    NETBSD_PGD
 %token<str>    SYSMAPTOK
 %token<str>    REKALL_PROFILE
 %token<str>    VOLATILITY_PROFILE
@@ -380,6 +385,16 @@ assignment:
         freebsd_pmap_assignment
         |
         freebsd_pgd_assignment
+        |
+        netbsd_name_assignment
+        |
+        netbsd_pid_assignment
+        |
+        netbsd_vmspace_assignment
+        |
+        netbsd_pmap_assignment
+        |
+        netbsd_pgd_assignment
         ;
 
 kpgd_assignment:
@@ -629,6 +644,57 @@ freebsd_pmap_assignment:
         ;
 freebsd_pgd_assignment:
         FREEBSD_PGD EQUALS NUM
+        {
+            uint64_t tmp = strtoull($3, NULL, 0);
+            uint64_t *tmp_ptr = malloc(sizeof(uint64_t));
+            (*tmp_ptr) = tmp;
+            g_hash_table_insert(tmp_entry, $1, tmp_ptr);
+            free($3);
+        }
+        ;
+
+netbsd_name_assignment:
+        NETBSD_NAME EQUALS NUM
+        {
+            uint64_t tmp = strtoull($3, NULL, 0);
+            uint64_t *tmp_ptr = malloc(sizeof(uint64_t));
+            (*tmp_ptr) = tmp;
+            g_hash_table_insert(tmp_entry, $1, tmp_ptr);
+            free($3);
+        }
+        ;
+netbsd_pid_assignment:
+        NETBSD_PID EQUALS NUM
+        {
+            uint64_t tmp = strtoull($3, NULL, 0);
+            uint64_t *tmp_ptr = malloc(sizeof(uint64_t));
+            (*tmp_ptr) = tmp;
+            g_hash_table_insert(tmp_entry, $1, tmp_ptr);
+            free($3);
+        }
+        ;
+netbsd_vmspace_assignment:
+        NETBSD_VMSPACE EQUALS NUM
+        {
+            uint64_t tmp = strtoull($3, NULL, 0);
+            uint64_t *tmp_ptr = malloc(sizeof(uint64_t));
+            (*tmp_ptr) = tmp;
+            g_hash_table_insert(tmp_entry, $1, tmp_ptr);
+            free($3);
+        }
+        ;
+netbsd_pmap_assignment:
+        NETBSD_PMAP EQUALS NUM
+        {
+            uint64_t tmp = strtoull($3, NULL, 0);
+            uint64_t *tmp_ptr = malloc(sizeof(uint64_t));
+            (*tmp_ptr) = tmp;
+            g_hash_table_insert(tmp_entry, $1, tmp_ptr);
+            free($3);
+        }
+        ;
+netbsd_pgd_assignment:
+        NETBSD_PGD EQUALS NUM
         {
             uint64_t tmp = strtoull($3, NULL, 0);
             uint64_t *tmp_ptr = malloc(sizeof(uint64_t));

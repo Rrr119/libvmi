@@ -1,0 +1,12 @@
+# NetBSD 10.99 (-current) amd64 kernel symbol table (test fixture)
+# Columns: address  type  name (output of `nm -n netbsd-GENERIC`)
+ffffffff82200010 T cpu_vtop
+ffffffff82210020 T pmap_kernel
+ffffffff82400040 D allproc
+ffffffff82410050 D proc0
+ffffffff82500060 T kthread_create
+ffffffff82600070 T sys_open
+ffffffff82700080 T sys_close
+ffffffff82800090 T kern_main
+ffffffff829000a0 T mi_switch
+ffffffff82a000b0 T cpu_switchto

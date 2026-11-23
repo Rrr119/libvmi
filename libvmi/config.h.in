@@ -25,6 +25,9 @@
 /* Define to FreeBSD support. */
 #cmakedefine ENABLE_FREEBSD
 
+/* Define to NetBSD support. */
+#cmakedefine ENABLE_NETBSD
+
 /* Define to OSX support. */
 #cmakedefine ENABLE_OSX
 

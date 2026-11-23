@@ -143,6 +143,12 @@ os          += libvmi/os/freebsd/freebsd.h \
                libvmi/os/freebsd/memory.c \
                libvmi/os/freebsd/symbols.c
 endif
+if NETBSD
+os          += libvmi/os/netbsd/netbsd.h \
+               libvmi/os/netbsd/core.c \
+               libvmi/os/netbsd/memory.c \
+               libvmi/os/netbsd/symbols.c
+endif
 if OSX
 os          += libvmi/os/osx/osx.h \
                libvmi/os/osx/core.c \
@@ -299,6 +305,15 @@ if MAKE_TESTS
 
     check_PROGRAMS = tests/check_libvmi
 
+if NETBSD
+    TESTS += tests/netbsd/check_netbsd
+    check_PROGRAMS += tests/netbsd/check_netbsd
+
+    tests_netbsd_check_netbsd_SOURCES = tests/netbsd/test_netbsd.c
+    tests_netbsd_check_netbsd_CFLAGS = $(CHECK_CFLAGS) $(GLIB_CFLAGS)
+    tests_netbsd_check_netbsd_LDADD = $(CHECK_LIBS) $(GLIB_LIBS) libvmi/libvmi.la
+endif
+
     tests_check_libvmi_SOURCES = \
         tests/check_runner.c \
         tests/check_tests.h \
@@ -316,3 +331,14 @@ if MAKE_TESTS
     tests_check_libvmi_CFLAGS = $(CHECK_CFLAGS) $(GLIB_CFLAGS)
     tests_check_libvmi_LDADD = $(CHECK_LIBS) $(GLIB_LIBS) libvmi/libvmi.la
 endif
+
+EXTRA_DIST = \
+    tests/netbsd/CMakeLists.txt \
+    tests/netbsd/README.md \
+    tests/netbsd/run_netbsd_tests.sh \
+    tests/netbsd/netbsd-9.3/libvmi.conf \
+    tests/netbsd/netbsd-9.3/System.map \
+    tests/netbsd/netbsd-10.1/libvmi.conf \
+    tests/netbsd/netbsd-10.1/System.map \
+    tests/netbsd/netbsd-10.99/libvmi.conf \
+    tests/netbsd/netbsd-10.99/System.map

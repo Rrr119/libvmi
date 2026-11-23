@@ -134,6 +134,8 @@ typedef enum os {
 
     VMI_OS_FREEBSD,   /**< OS type is FreeBSD */
 
+    VMI_OS_NETBSD,   /**< OS type is NetBSD */
+
     VMI_OS_OSX       /**< OS type is OSX */
 } os_t;
 
@@ -2807,6 +2809,16 @@ const char * vmi_get_linux_sysmap(vmi_instance_t vmi) NOEXCEPT;
  * @return String file path location of the FreeBSD system map
  */
 const char * vmi_get_freebsd_sysmap(vmi_instance_t vmi) NOEXCEPT;
+
+/**
+ * Returns the path of the NetBSD system map file for the given vmi instance
+ *
+ * DEPRECATED. Please use vmi_get_os_profile_path instead.
+ *
+ * @param[in] vmi LibVMI instance
+ * @return String file path location of the NetBSD system map
+ */
+const char * vmi_get_netbsd_sysmap(vmi_instance_t vmi) NOEXCEPT;
 
 /**
  * Get full path of associated rekall profile
